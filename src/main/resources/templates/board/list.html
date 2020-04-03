@@ -1,0 +1,135 @@
+<div th:insert="common/header.html" id="header"></div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar">Home</span>
+                <span class="icon-bar">About</span>
+                <span class="icon-bar">Board</span>
+            </button>
+            <a class="navbar-brand" href="/home">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="active"><a href="/">Board</a></li>
+                <li><a href="/billiards">Billiards</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <p><a href="/home">Home</a></p>
+            <p><a href="/about">About</a></p>
+            <p><a href="/">Board</a></p>
+            <p><a href="/billiards">Billiards</a></p>
+        </div>
+
+
+        <div class="col-sm-8 text-center" id="listcontent">
+
+            <table class="table table-hover">
+                <thead>
+                <tr id="listhead">
+                    <th>번호</th>
+                    <th>글제목</th>
+                    <th>글내용</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>추천수</th>
+                    <th>작성일</th>
+                </tr>
+                </thead>
+
+                <tbody id="listbody">
+                <!-- CONTENTS !-->
+                <tr th:each="board : ${boardList}">
+                    <td>
+                        <span th:text="${board.id}"></span>
+                    </td>
+                    <td>
+                        <a th:href="@{'/post/' + ${board.id}}">
+                            <span style="text-decoration:underline" th:text="${board.title}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/post/' + ${board.id}}">
+                            <span style="text-decoration:underline" th:text="${board.content}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <span th:text="${board.writer}"></span>
+                    </td>
+
+                    <td>
+                        <span th:text="${board.count}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${board.recommend}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <table class="boardcontent">
+
+                <thead>
+                <tr>
+                    <th class="paging">
+                            <span th:each="pageNum : ${pageList}" th:inline="text">
+                                <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+                            </span>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <!-- 검색 form -->
+                    <form action="/board/search" method="GET">
+
+                        <th class="search">
+                            <input name="keyword" type="text" placeholder="검색어(제목)를 입력해주세요">
+                            <button class="btn">검색하기</button>
+                        </th>
+
+                        <th class="write">
+                            <a class="btn btn-primary" th:href="@{/post}">글쓰기</a>
+                        </th>
+                    </form>
+                </tr>
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>ADS</p>
+            </div>
+            <div class="well">
+                <p>ADS</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<div th:insert="common/footer.html" id="footer"></div>

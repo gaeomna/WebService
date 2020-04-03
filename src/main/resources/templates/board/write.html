@@ -1,0 +1,79 @@
+
+<div th:insert="common/header.html" id="header"></div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar">Home</span>
+                <span class="icon-bar">About</span>
+                <span class="icon-bar">Board</span>
+            </button>
+            <a class="navbar-brand" href="/home">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="active"><a href="/">Board</a></li>
+                <li><a href="/billiards">Billiards</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <p><a href="/home">Home</a></p>
+            <p><a href="/about">About</a></p>
+            <p><a href="/">Board</a></p>
+            <p><a href="/billiards">Billiards</a></p>
+        </div>
+
+        <div class="col-sm-8 text-center">
+
+            <br><br>
+
+            <form action="/post" method="post">
+                <div class="form-group write">
+                    <label for="title">제목:</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="(최대 100자)">
+                </div>
+                <div class="form-group write">
+                    <label for="writer">작성자:</label>
+                    <input type="text" class="form-control" name="writer" id="writer" placeholder="(최대 10자)">
+                </div>
+                <div class="form-group write">
+                    <label for="content">내용:</label>
+                    <textarea class="form-control" rows="10" name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
+                </div>
+                <div class="writebtn">
+                    <input type="submit" class="btn btn-primary" value="등록">
+                    <a class="btn btn-primary" href="/">취소</a>
+                </div>
+            </form>
+
+        </div>
+
+
+
+        <div class="col-sm-2 sidenav">
+            <div class="well">
+                <p>ADS</p>
+            </div>
+            <div class="well">
+                <p>ADS</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<div th:insert="common/footer.html" id="footer"></div>
